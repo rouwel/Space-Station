@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="PackedScene" path="res://assets/Models/GLB format/room-large.glb" id="1_room"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
@@ -6,9 +6,15 @@
 [ext_resource type="PackedScene" path="res://assets/Models/GLB format/template-wall.glb" id="4_wall"]
 [ext_resource type="PackedScene" path="res://assets/Models/GLB format/corridor-end.glb" id="5_end"]
 [ext_resource type="Material" path="res://materials/station_metal.tres" id="6_metal"]
+[ext_resource type="Material" path="res://materials/wall_red.tres" id="7_wall_red"]
+[ext_resource type="Script" path="res://scripts/apply_wall_materials.gd" id="8_apply_walls"]
+[ext_resource type="Material" path="res://materials/floor_worn.tres" id="9_floor_mat"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(80, 1, 80)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(80, 80)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 
@@ -25,28 +31,29 @@ reflected_light_source = 2
 tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
+script = ExtResource("8_apply_walls")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_env")
 
 [node name="RoomLarge" parent="." instance=ExtResource("1_room")]
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="SmallRoom1" parent="." instance=ExtResource("3_small")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerA" parent="SmallRoom1" instance=ExtResource("4_wall")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2, 0, 0)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerB" parent="SmallRoom1" instance=ExtResource("4_wall")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerC" parent="SmallRoom1" instance=ExtResource("4_wall")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -2)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="CapA" parent="SmallRoom1" instance=ExtResource("5_end")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 3, 0, 0)
@@ -54,19 +61,19 @@ material_override = ExtResource("6_metal")
 
 [node name="SmallRoom2" parent="." instance=ExtResource("3_small")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -12, 0, 0)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerA" parent="SmallRoom2" instance=ExtResource("4_wall")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2, 0, 0)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerB" parent="SmallRoom2" instance=ExtResource("4_wall")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerC" parent="SmallRoom2" instance=ExtResource("4_wall")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -2)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="CapA" parent="SmallRoom2" instance=ExtResource("5_end")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 3, 0, 0)
@@ -74,19 +81,19 @@ material_override = ExtResource("6_metal")
 
 [node name="SmallRoom3" parent="." instance=ExtResource("3_small")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -12)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerA" parent="SmallRoom3" instance=ExtResource("4_wall")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2, 0, 0)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerB" parent="SmallRoom3" instance=ExtResource("4_wall")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="BlockerC" parent="SmallRoom3" instance=ExtResource("4_wall")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -2)
-material_override = ExtResource("6_metal")
+material_override = ExtResource("7_wall_red")
 
 [node name="CapA" parent="SmallRoom3" instance=ExtResource("5_end")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 3, 0, 0)
@@ -95,6 +102,12 @@ material_override = ExtResource("6_metal")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 6, 0)
 shadow_enabled = true
+shadow_bias = 0.06
+shadow_normal_bias = 3.0
+shadow_blur = 0.8
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 50.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -121,6 +134,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49, 0)
+mesh = SubResource("PlaneMesh_floor")
+surface_material_override/0 = ExtResource("9_floor_mat")
+cast_shadow = 0
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)

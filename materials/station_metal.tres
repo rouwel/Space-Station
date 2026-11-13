@@ -4,5 +4,6 @@
 
 [resource]
 albedo_texture = ExtResource("1_colormap")
-metallic = 0.85
-roughness = 0.4
+metallic = 0.8
+specular = 0.5
+roughness = 0.35
