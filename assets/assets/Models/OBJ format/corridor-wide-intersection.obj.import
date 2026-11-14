@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjs7uqi5u2itl"
+path="res://.godot/imported/corridor-wide-intersection.obj-5803fb695cdebf89fb5f6d0068ffafef.mesh"
+
+[deps]
+
+files=["res://.godot/imported/corridor-wide-intersection.obj-5803fb695cdebf89fb5f6d0068ffafef.mesh"]
+
+source_file="res://assets/assets/Models/OBJ format/corridor-wide-intersection.obj"
+dest_files=["res://.godot/imported/corridor-wide-intersection.obj-5803fb695cdebf89fb5f6d0068ffafef.mesh", "res://.godot/imported/corridor-wide-intersection.obj-5803fb695cdebf89fb5f6d0068ffafef.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
